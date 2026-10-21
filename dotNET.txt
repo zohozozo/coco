@@ -1,0 +1,972 @@
+################ .NET PROGRAMS ################
+
+######## PART 1: C# WINDOWS FORMS PROGRAMS ########
+
+==================================================================
+1) MY NOTEPAD  (namespace PRINT3)
+==================================================================
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace PRINT3
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void nEWToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void oPENToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                richTextBox1.Text =
+                    System.IO.File.ReadAllText(openFileDialog1.FileName);
+            }
+        }
+
+        private void sAVEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "Text Files|*.txt";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                System.IO.File.WriteAllText(
+                    saveFileDialog1.FileName,
+                    richTextBox1.Text);
+            }
+        }
+
+        private void eXITToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void cUTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Cut();
+        }
+
+        private void cOPYToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Copy();
+        }
+
+        private void pASTEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Paste();
+        }
+
+        private void sELECTALLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SelectAll();
+        }
+
+        private void uNDOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Undo();
+        }
+
+        private void rEDOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Redo();
+        }
+
+        private void fONTSTYLEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (fontDialog1.ShowDialog() == DialogResult.OK)
+            {
+                richTextBox1.Font = fontDialog1.Font;
+            }
+        }
+
+        private void fONTCOLOURToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                richTextBox1.ForeColor = colorDialog1.Color;
+            }
+        }
+    }
+}
+
+
+==================================================================
+2) POSITIVE OR NEGATIVE
+==================================================================
+public partial class Form1 : Form
+{
+    public Form1()
+    {
+        InitializeComponent();
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+        int num = Convert.ToInt32(textBox1.Text);
+        if (num > 0)
+        {
+            label2.Text = "Positive Number";
+        }
+        else if (num < 0)
+        {
+            label2.Text = "Negative Number";
+        }
+        else
+        {
+            label2.Text = "Zero";
+        }
+    }
+}
+
+
+==================================================================
+3) STUDENT DETAILS  (namespace print_2)
+==================================================================
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace print_2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.Image = new Bitmap(openFileDialog1.FileName);
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            String name = textBox1.Text;
+            decimal age = numericUpDown1.Value;
+            String gender = "";
+            String hobbies = "";
+            String bloodgroup = "";
+            if (radioButton1.Checked)
+                gender = "Male";
+            else if (radioButton2.Checked)
+                gender = "Female";
+            if (checkBox1.Checked)
+                hobbies += "Reading ";
+            if (checkBox2.Checked)
+                hobbies += "Singing ";
+            if (checkBox3.Checked)
+                hobbies += "Dance ";
+            bloodgroup = comboBox1.SelectedItem.ToString();
+            MessageBox.Show("Name = " + name +
+"\n  Age: " + age +
+"\n Gender: " + gender +
+"\n Blood group" + bloodgroup +
+"\n Hobbies " + hobbies);
+        }
+    }
+}
+
+
+==================================================================
+4) CALCULATOR  (namespace print_1)
+==================================================================
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace print_1
+{
+    public partial class Form1 : Form
+    {
+        int FirstNumber;
+        string Operation;
+        int SecondNumber;
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == " ")
+            {
+                textBox1.Text = "0";
+            }
+            else
+            {
+                textBox1.Text = textBox1.Text + "0";
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                textBox1.Text = "1";
+            }
+            else
+            {
+                textBox1.Text = textBox1.Text + "1";
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                textBox1.Text = "2";
+            }
+            else
+            {
+                textBox1.Text = textBox1.Text + "2";
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                textBox1.Text = "3";
+            }
+            else
+            {
+                textBox1.Text = textBox1.Text + "3";
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                textBox1.Text = "4";
+            }
+            else
+            {
+                textBox1.Text = textBox1.Text + "4";
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                textBox1.Text = "5";
+            }
+            else
+            {
+                textBox1.Text = textBox1.Text + "5";
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                textBox1.Text = "6";
+            }
+            else
+            {
+                textBox1.Text = textBox1.Text + "6";
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                textBox1.Text = "7";
+            }
+            else
+            {
+                textBox1.Text = textBox1.Text + "7";
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                textBox1.Text = "8";
+            }
+            else
+            {
+                textBox1.Text = textBox1.Text + "8";
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                textBox1.Text = "9";
+            }
+            else
+            {
+                textBox1.Text = textBox1.Text + "9";
+            }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            FirstNumber = Convert.ToInt32(textBox1.Text);
+            textBox1.Text = " ";
+            Operation = "+";
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            FirstNumber = Convert.ToInt32(textBox1.Text);
+            textBox1.Text = " ";
+            Operation = "-";
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            FirstNumber = Convert.ToInt32(textBox1.Text);
+            textBox1.Text = " ";
+            Operation = "*";
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            FirstNumber = Convert.ToInt32(textBox1.Text);
+            textBox1.Text = " ";
+            Operation = "/";
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            int SecondNumber;
+            int Result;
+            SecondNumber = Convert.ToInt32(textBox1.Text);
+            if (Operation == "+")
+            {
+                Result = (FirstNumber + SecondNumber);
+                textBox1.Text = Convert.ToString(Result);
+                FirstNumber = Result;
+            }
+            if (Operation == "-")
+            {
+                Result = (FirstNumber - SecondNumber);
+                textBox1.Text = Convert.ToString(Result);
+                FirstNumber = Result;
+            }
+            if (Operation == "*")
+            {
+                Result = (FirstNumber * SecondNumber);
+                textBox1.Text = Convert.ToString(Result);
+                FirstNumber = Result;
+            }
+            if (Operation == "/")
+            {
+                Result = (FirstNumber / SecondNumber);
+                textBox1.Text = Convert.ToString(Result);
+                FirstNumber = Result;
+            }
+        }
+    }
+}
+
+
+==================================================================
+5) STUDENTS DETAIL - FORM 1  (namespace _7th)
+==================================================================
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace _7th
+{
+    public partial class Form1 : Form
+    {
+        private string name;
+        private string course;
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void textBox1_Validating(object sender, CancelEventArgs e)
+        {
+            if (textBox1.Text.Trim() == " ")
+            {
+                errorProvider1.SetError(textBox1, "Enter name");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(textBox1, " ");
+            }
+        }
+
+        private void textBox2_Validating(object sender, CancelEventArgs e)
+        {
+            if (textBox2.Text.Trim() == " ")
+            {
+                errorProvider1.SetError(textBox2, "Enter name");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(textBox2, " ");
+            }
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox3_Validating(object sender, CancelEventArgs e)
+        {
+            int mark = Convert.ToInt32(textBox3.Text);
+
+            if (textBox3.Text.Trim() == "")
+            {
+                errorProvider1.SetError(textBox3, "Enter Mark");
+                e.Cancel = true;
+            }
+            if (mark < 0 || mark > 100)
+            {
+                errorProvider1.SetError(textBox3, "Mark should be between 0 and 100.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(textBox3, "");
+            }
+        }
+
+        private void textBox4_Validating(object sender, CancelEventArgs e)
+        {
+            int mark = Convert.ToInt32(textBox4.Text);
+
+            if (textBox4.Text.Trim() == "")
+            {
+                errorProvider1.SetError(textBox4, "Enter Mark");
+                e.Cancel = true;
+            }
+            if (mark < 0 || mark > 100)
+            {
+                errorProvider1.SetError(textBox4, "Mark should be between 0 and 100.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(textBox4, "");
+            }
+        }
+
+        private void textBox5_Validating(object sender, CancelEventArgs e)
+        {
+            int mark = Convert.ToInt32(textBox5.Text);
+
+            if (textBox5.Text.Trim() == "")
+            {
+                errorProvider1.SetError(textBox5, "Enter Mark");
+                e.Cancel = true;
+            }
+            if (mark < 0 || mark > 100)
+            {
+                errorProvider1.SetError(textBox5, "Mark should be between 0 and 100.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(textBox5, "");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int m1 = Convert.ToInt32(textBox3.Text);
+            int m2 = Convert.ToInt32(textBox4.Text);
+            int m3 = Convert.ToInt32(textBox5.Text);
+            int total = m1 + m2 + m3;
+            double average = total / 3.0;
+            string result;
+            name = textBox1.Text;
+            course = textBox2.Text;
+            if (m1 >= 35 && m2 >= 35 && m3 >= 35)
+                result = "PASS";
+            else
+                result = "FAIL";
+            this.Hide();
+            Form2 frm = new Form2(name, course, total, average, result);
+            frm.ShowDialog();
+            Application.Exit();
+        }
+    }
+}
+
+
+==================================================================
+6) STUDENTS DETAIL - FORM 2  (namespace _7th)
+==================================================================
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace _7th
+{
+    public partial class Form2 : Form
+    {
+        public Form2(string name, string course, int total, double average, string result)
+        {
+            InitializeComponent();
+            richTextBox1.ReadOnly = true;
+            richTextBox1.Text = "name:" + name +
+                                "\n course:" + course +
+                                "\n grade: " + average +
+                                "\n total " + total +
+                                "\n Result  " + result;
+        }
+    }
+}
+
+
+==================================================================
+7) FOR AND WHILE LOOP  (namespace print4)
+==================================================================
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace print4
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int n = Convert.ToInt32(textBox1.Text);
+
+            listBox1.Items.Clear();
+
+            for (int i = 1; i <= n; i++)
+            {
+                listBox1.Items.Add("Square of " + i + " = " + (i * i));
+            }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int n = Convert.ToInt32(textBox1.Text);
+            int i = 1, sum = 0;
+
+            while (i <= n)
+            {
+                sum += i;
+                i++;
+            }
+
+            label2.Text = "Sum = " + sum;
+        }
+
+    }
+}
+
+
+######## PART 2: WPF / ASP.NET PROGRAMS ########
+
+.NET Programs Collection
+Program 6: Pulse Animation
+<Grid>
+    <Button Content="Pulse Button"
+            Width="150"
+            Height="40"
+            Opacity="1">
+        <Button.Triggers>
+            <!-- Mouse Enter -->
+            <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <!-- Increase Width -->
+                        <DoubleAnimation Storyboard.TargetProperty="Width" To="200" Duration="0:0:0.3" AutoReverse="True" />
+                        <!-- Increase Height -->
+                        <DoubleAnimation Storyboard.TargetProperty="Height" To="60" Duration="0:0:0.3" AutoReverse="True" />
+                        <!-- Fade Opacity -->
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0.3" AutoReverse="True" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Button.Triggers>
+    </Button>
+</Grid>
+
+------------------------------------------------------------
+
+Program 8: Field Validator and Compare Validator
+Default.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Validator_Demo.Default" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Validation Example</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <h2>Registration Form</h2>
+        Username: <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="rfvUsername" runat="server"
+            ControlToValidate="txtUsername"
+            ErrorMessage="Username is required"
+            ForeColor="Red">
+        </asp:RequiredFieldValidator>
+        <br/><br/>
+        Password: <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="rfvPassword" runat="server"
+            ControlToValidate="txtPassword"
+            ErrorMessage="Password is required"
+            ForeColor="Red">
+        </asp:RequiredFieldValidator>
+        <br/><br/>
+        Confirm password: <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server"
+            ControlToValidate="txtConfirmPassword"
+            ErrorMessage="Confirm password is required"
+            ForeColor="Red">
+        </asp:RequiredFieldValidator>
+        <asp:CompareValidator ID="cvPassword" runat="server"
+            ControlToValidate="txtConfirmPassword"
+            ControlToCompare="txtPassword"
+            Operator="Equal"
+            Type="String"
+            ErrorMessage="Passwords do not match"
+            ForeColor="Red">
+        </asp:CompareValidator>
+        <br/><br/>
+        <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+        <br/><br/>
+        <asp:Label ID="lblMessage" runat="server" ForeColor="Green"></asp:Label>
+    </form>
+</body>
+</html>
+Default.aspx.cs
+protected void Page_Load(object sender, EventArgs e)
+{
+    // If unobtrusive validation error occurs, add this line:
+    UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+}
+protected void btnSubmit_Click(object sender, EventArgs e)
+{
+    if (Page.IsValid)
+    {
+        lblMessage.Text = "Registration Successful!";
+    }
+}
+
+------------------------------------------------------------
+
+Program 9: Range Validator and Regular Expression Validation Controls
+Default.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Validator_Demo.Default" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Range and Regular Expression Validator</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <h2>Student Registration</h2>
+        Age: <asp:TextBox ID="txtAge" runat="server"></asp:TextBox>
+        <asp:RangeValidator ID="rvAge" runat="server"
+            ControlToValidate="txtAge"
+            MinimumValue="18"
+            MaximumValue="30"
+            Type="Integer"
+            ErrorMessage="Age must be between 18 and 30"
+            ForeColor="Red">
+        </asp:RangeValidator>
+        <br/><br/>
+        Email: <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+        <asp:RegularExpressionValidator ID="revEmail" runat="server"
+            ControlToValidate="txtEmail"
+            ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+            ErrorMessage="Enter a valid email address."
+            ForeColor="Red">
+        </asp:RegularExpressionValidator>
+        <br/><br/>
+        Mobile Number: <asp:TextBox ID="txtMobile" runat="server"></asp:TextBox>
+        <asp:RegularExpressionValidator ID="revMobile" runat="server"
+            ControlToValidate="txtMobile"
+            ValidationExpression="^\d{10}$"
+            ErrorMessage="Enter a valid 10 digit mobile number"
+            ForeColor="Red">
+        </asp:RegularExpressionValidator>
+        <br/><br/>
+        <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+        <br/><br/>
+        <asp:Label ID="lblMessage" runat="server" ForeColor="Green"></asp:Label>
+    </form>
+</body>
+</html>
+Default.aspx.cs
+protected void Page_Load(object sender, EventArgs e)
+{
+    UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+}
+protected void btnSubmit_Click(object sender, EventArgs e)
+{
+    if (Page.IsValid)
+    {
+        lblMessage.Text = "Registration successful!";
+    }
+}
+
+------------------------------------------------------------
+
+Program 10: Web Application to Insert, Update, and Delete Records
+using System;
+using System.Data;
+using System.Data.OleDb;
+public partial class _Default : System.Web.UI.Page
+{
+    string ConString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\EmpDB.accdb";
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            DisplayRecords();
+        }
+    }
+    private void DisplayRecords()
+    {
+        string query = "SELECT * FROM Emptable";
+        using (OleDbConnection con = new OleDbConnection(ConString))
+        {
+            using (OleDbDataAdapter adapter = new OleDbDataAdapter(query, con))
+            {
+                DataTable dt = new DataTable();
+                con.Open();
+                adapter.Fill(dt);
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+            }
+        }
+    }
+    // Insert Record
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string query = "INSERT INTO Emptable (Id, EName, Did, DName, Salary) VALUES (?, ?, ?, ?, ?)";
+        using (OleDbConnection con = new OleDbConnection(ConString))
+        {
+            using (OleDbCommand cmd = new OleDbCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@Id", TextBox1.Text);
+                cmd.Parameters.AddWithValue("@EName", TextBox2.Text);
+                cmd.Parameters.AddWithValue("@Did", TextBox3.Text);
+                cmd.Parameters.AddWithValue("@DName", TextBox4.Text);
+                cmd.Parameters.AddWithValue("@Salary", TextBox5.Text);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        Label1.Text = "Record inserted successfully";
+        DisplayRecords();
+        TextBox1.Text = "";
+        TextBox2.Text = "";
+        TextBox3.Text = "";
+        TextBox4.Text = "";
+        TextBox5.Text = "";
+    }
+    // Update Record
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        string query = "UPDATE Emptable SET salary = salary * 1.15 WHERE id = ?";
+        using (OleDbConnection con = new OleDbConnection(ConString))
+        {
+            using (OleDbCommand cmd = new OleDbCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@Id", TextBox1.Text);
+                con.Open();
+                int result = cmd.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    Label1.Text = "Salary increased by 15% successfully";
+                }
+                else
+                {
+                    Label1.Text = "Employee not found";
+                }
+            }
+        }
+        DisplayRecords();
+        TextBox1.Text = "";
+    }
+    // Delete Record
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        string query = "DELETE FROM Emptable WHERE id = ?";
+        using (OleDbConnection con = new OleDbConnection(ConString))
+        {
+            using (OleDbCommand cmd = new OleDbCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@Id", TextBox1.Text);
+                con.Open();
+                int result = cmd.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    Label1.Text = "Record deleted successfully";
+                }
+                else
+                {
+                    Label1.Text = "Employee not found";
+                }
+            }
+        }
+        DisplayRecords();
+        TextBox1.Text = "";
+    }
+}
+
+------------------------------------------------------------
+
+Program 11: Display Employee Records Using Data Adapter
+using System;
+using System.Data;
+using System.Data.OleDb;
+using System.Web.UI.WebControls;
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            LoadEmployeeData();
+        }
+    }
+    private void LoadEmployeeData()
+    {
+        string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\EmpDB.accdb;";
+        string query = "SELECT * FROM Emptable";
+        using (OleDbConnection con = new OleDbConnection(connectionString))
+        {
+            using (OleDbDataAdapter adapter = new OleDbDataAdapter(query, con))
+            {
+                DataTable dt = new DataTable();
+                con.Open();
+                adapter.Fill(dt);
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+            }
+        }
+    }
+}
+
+------------------------------------------------------------
+
+Program 12: Implement the Data Reader Class
+using System;
+using System.Data;
+using System.Data.OleDb;
+using System.Web.UI.WebControls;
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            LoadEmployeeData();
+        }
+    }
+    private void LoadEmployeeData()
+    {
+        string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\EmpDB.accdb;";
+        string query = "SELECT * FROM Emptable";
+        using (OleDbConnection con = new OleDbConnection(connectionString))
+        {
+            using (OleDbCommand cmd = new OleDbCommand(query, con))
+            {
+                con.Open();
+                using (OleDbDataReader reader = cmd.ExecuteReader())
+                {
+                    GridView1.DataSource = reader;
+                    GridView1.DataBind();
+                }
+            }
+        }
+    }
+}
